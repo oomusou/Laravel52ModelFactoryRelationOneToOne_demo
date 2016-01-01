@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,4 +24,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * 建立users與posts一對一關係
+     *
+     * @return HasOne
+     */
+    public function post() : HasOne
+    {
+        return $this->hasOne(Post::class);
+    }
 }
